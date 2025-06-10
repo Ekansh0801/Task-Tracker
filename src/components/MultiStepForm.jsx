@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 
+// MultiStepForm component to handle adding tasks in a multi-step process
 const MultiStepForm = ({ onAddTask }) => {
+    // State to manage the current step, task name, priority, and error messages
     const [step, setStep] = useState(1);
+    // State to manage task name and priority selection
     const [taskName, setTaskName] = useState('');
+    // Default priority set to 'Medium'
     const [priority, setPriority] = useState('Medium');
+    // State to manage error messages
     const [error, setError] = useState('');
 
+    // Function to handle moving to the next step
     const handleNext = () => {
         if (step === 1 && taskName.trim() === '') {
             setError('Task name cannot be empty');
@@ -14,11 +20,13 @@ const MultiStepForm = ({ onAddTask }) => {
             setStep(step + 1);
         }
     };
+    // Function to handle going back to the previous step
 
     const handleBack = () => {
         setStep(step - 1);
     };
 
+    // Function to handle form submission for adding a task
     const handleSubmit = (e) => {
         e.preventDefault();
         if (taskName.trim() === '') {
@@ -30,10 +38,12 @@ const MultiStepForm = ({ onAddTask }) => {
         setPriority('Medium');
         setStep(1);
     };
-
+// Render the multi-step form with input fields for task name and priority, and navigation buttons
     return (
         <div>
+            {/* // Displaying the current step title */}
             <h2>{step === 1 ? 'Step 1: Enter Task Name' : 'Step 2: Select Priority'}</h2>
+            {/* // Form to handle task name and priority selection */}
             <form onSubmit={handleSubmit}>
                 {step === 1 && (
                     <div>

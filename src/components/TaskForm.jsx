@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
+// TaskForm component to handle adding and editing tasks
 const TaskForm = ({ addTask, updateTask, editTaskData }) => {
+    // State to manage task name, priority, and error messages
     const [taskName, setTaskName] = useState('');
+    // Default priority set to 'Medium'
     const [priority, setPriority] = useState('Medium');
+    // State to manage error messages
     const [error, setError] = useState('');
-
+   
+    // Effect to populate form fields when editing a task
     useEffect(() => {
         if (editTaskData) {
             setTaskName(editTaskData.name);
             setPriority(editTaskData.priority);
         }
     }, [editTaskData]);
-
+  
+    // Function to handle form submission for adding or updating tasks
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!taskName.trim()) {
@@ -30,6 +36,7 @@ const TaskForm = ({ addTask, updateTask, editTaskData }) => {
         setError('');
     };
 
+    // Render the form with input fields for task name and priority, and a submit button
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -43,6 +50,7 @@ const TaskForm = ({ addTask, updateTask, editTaskData }) => {
                 {error && <p style={{ color: 'red' }}>{error}</p>}
             </div>
             <div>
+                {/* // Dropdown for selecting task priority */}
                 <label htmlFor="priority">Priority:</label>
                 <select
                     id="priority"
@@ -54,6 +62,7 @@ const TaskForm = ({ addTask, updateTask, editTaskData }) => {
                     <option value="Low">Low</option>
                 </select>
             </div>
+            {/* // Submit button to add or update the task */}
             <button type="submit">{editTaskData ? 'Update Task' : 'Add Task'}</button>
         </form>
     );

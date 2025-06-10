@@ -1,5 +1,6 @@
 import React from 'react';
 
+// TaskList component to display a list of tasks with options to edit or delete each task
 const TaskList = ({ tasks, onEdit, onDelete }) => {
     return (
         <div>
@@ -10,8 +11,11 @@ const TaskList = ({ tasks, onEdit, onDelete }) => {
                 <ul>
                     {tasks.map((task) => (
                         <li key={task.id}>
+                                {/* // Displaying task name and priority, along with buttons to edit or delete the task */}
                             <span>{task.name} - {task.priority}</span>
+                            {/* // Buttons to edit or delete the task */}
                             <button onClick={() => onEdit(task)}>Edit</button>
+                            {/* // Button to delete the task */}
                             <button onClick={() => onDelete(task.id)}>Delete</button>
                         </li>
                     ))}
