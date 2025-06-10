@@ -1,3 +1,5 @@
+import './App.css';
+
 import React, { useState } from 'react';
 import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
